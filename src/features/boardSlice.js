@@ -9,13 +9,12 @@ const BLACK = 2
 
 
 function changeFixed(state, row, col, type) {
-  console.log('changeFixed', row, col, type)
-
+  state.fixed = state.fixed.filter( cell => cell[0] !== row || cell[1] !== col)
+  
   if(state.current[row][col] === type){
     state.current[row][col] = EMPTY
-    state.fixed = state.fixed.filter( cell => cell[0] !== row || cell[1] !== col)
   } else {
-    if(state.current[row][col] === EMPTY) state.fixed.push([row,col])
+    state.fixed.push([row,col])
     state.current[row][col] = type
   }
 }
