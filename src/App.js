@@ -1,16 +1,26 @@
 import './App.css';
 import Board from './Board'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { setMode } from './features/boardSlice'
+
 function App() {
 
+  const dispatch = useDispatch()
+  const {fixing} = useSelector(state => state.board)
+
   function handleChange(e) {
-    console.log('change')
+    dispatch(setMode(e.target.checked))
   }
 
   return (
     <div className="App">
       <label className='modo'>
-        <input type="checkbox" id="modo" onChange={handleChange}/>
+        <input type="checkbox"
+          id="modo"
+          checked={fixing}
+          onChange={handleChange}
+        />
         Fijar fichas
       </label>
       <Board/>

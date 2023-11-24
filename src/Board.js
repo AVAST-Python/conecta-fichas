@@ -1,8 +1,7 @@
 import './Board.css'
 
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
-import { leftClick, rightClick, EMPTY } from './features/boardSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { leftClick, rightClick } from './features/boardSlice'
 
 import Square from './Square'
 

@@ -21,7 +21,7 @@ function changeFixed(state, row, col, type) {
 }
 
 function changeCurrent(state, row, col, type) {
-  if(state.fixed[row][col] !== EMPTY) return
+  if(state.fixed.some(([rowFixed, colFixed]) => row === rowFixed && col === colFixed)) return
 
   if(state.current[row][col] === type){
     state.current[row][col] = EMPTY
@@ -60,7 +60,7 @@ export const boardSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { rightClick, leftClick } = boardSlice.actions
+export const { rightClick, leftClick, setMode } = boardSlice.actions
 export { EMPTY, WHITE, BLACK}
 
 export default boardSlice.reducer
