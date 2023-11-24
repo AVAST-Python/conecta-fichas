@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/conecta-fichas/static/css/main.c326b78a.css",
-    "main.js": "/conecta-fichas/static/js/main.6c3a2b5b.js",
+    "main.js": "/conecta-fichas/static/js/main.b8b89e7a.js",
     "static/js/787.d2a927cf.chunk.js": "/conecta-fichas/static/js/787.d2a927cf.chunk.js",
     "index.html": "/conecta-fichas/index.html",
     "main.c326b78a.css.map": "/conecta-fichas/static/css/main.c326b78a.css.map",
-    "main.6c3a2b5b.js.map": "/conecta-fichas/static/js/main.6c3a2b5b.js.map",
+    "main.b8b89e7a.js.map": "/conecta-fichas/static/js/main.b8b89e7a.js.map",
     "787.d2a927cf.chunk.js.map": "/conecta-fichas/static/js/787.d2a927cf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c326b78a.css",
-    "static/js/main.6c3a2b5b.js"
+    "static/js/main.b8b89e7a.js"
   ]
 }
