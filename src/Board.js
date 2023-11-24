@@ -1,10 +1,22 @@
-import { useSelector } from 'react-redux'
 import './Board.css'
+
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { leftClick, rightClick } from './features/boardSlice'
+
 import Square from './Square'
 
 function Board() {
 
+  const dispatch = useDispatch()
   const {fixed, current} = useSelector(state => state.board)
+
+  function onPressed(row, col) {
+    dispatch(leftClick([row, col]))
+  }
+  function onRightPressed(row, col) {
+    dispatch(rightClick([row,col]));
+  }
 
   return (
 
@@ -16,7 +28,10 @@ function Board() {
               {row.map((cell, j) => {
                 const isFixed = !!fixed.find(e => e.cell[0] === i && e.cell[1] === j)
                 return (
-                  <Square key={j} row={i} col={j} value={cell} fixed={isFixed}/>
+                  <Square key={j} row={i} col={j} value={cell} fixed={isFixed}
+                    onPressed={onPressed}
+                    onRightPressed={onRightPressed}
+                  />
                 )
               })}
             </tr>

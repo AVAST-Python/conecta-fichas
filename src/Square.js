@@ -1,18 +1,19 @@
 import './Square.css'
 import { EMPTY, WHITE } from './features/boardSlice'
 
-import { useDispatch } from 'react-redux'
-import { leftClick, rightClick } from './features/boardSlice'
 
-function Square({row, col, value, fixed }) {
-  const dispatch = useDispatch()
+
+function Square(props) {
+  const {row, col, value, fixed } = props
+  const {onPressed, onRightPressed} = props
+
   const squareClass=value === EMPTY ? "empty" : value === WHITE ? "white" : "black"
 
   return (
     <td
       className={`${fixed ? "fixed" : ""}`}
-      onClick={() => dispatch(leftClick([row, col]))}
-      onContextMenu={(e) => {dispatch(rightClick([row,col])); e.preventDefault()}}
+      onClick={() => onPressed(row, col)}
+      onContextMenu={(e) => {e.preventDefault(); onRightPressed(row, col)}}
     >
       { value !== EMPTY &&
       <div className={`piece ${squareClass}`} ></div>}
