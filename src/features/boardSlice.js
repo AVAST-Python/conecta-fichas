@@ -8,7 +8,19 @@ const WHITE = 1
 const BLACK = 2
 
 
-function changeCell(state, row, col, type) {
+function changeFixed(state, row, col, type) {
+  console.log('changeFixed', row, col, type)
+
+  if(state.current[row][col] === type){
+    state.current[row][col] = EMPTY
+    state.fixed = state.fixed.filter( cell => cell[0] !== row || cell[1] !== col)
+  } else {
+    if(state.current[row][col] === EMPTY) state.fixed.push([row,col])
+    state.current[row][col] = type
+  }
+}
+
+function changeCurrent(state, row, col, type) {
   if(state.fixed[row][col] !== EMPTY) return
 
   if(state.current[row][col] === type){
@@ -18,28 +30,19 @@ function changeCell(state, row, col, type) {
   }
 }
 
+function changeCell(state, row, col, type) {
+  if(state.fixing) changeFixed(state, row, col, type)
+  else changeCurrent(state, row, col, type)
+}
+
 export const boardSlice = createSlice({
   name: 'board',
   initialState: {
     height: DEFAULT_WIDTH,
     width: DEFAULT_HEIGHT,
     fixing: true,
-    fixed: [...Array(DEFAULT_HEIGHT)].map(e => Array(DEFAULT_WIDTH).fill(EMPTY)),
-    // fixed: [
-    //   { cell: [1, 1], color: WHITE },
-    //   { cell: [2, 2], color: BLACK },
-    // ],
+    fixed: [],
     current: [...Array(DEFAULT_HEIGHT)].map(e => Array(DEFAULT_WIDTH).fill(EMPTY)),
-    // current: [
-    //   [0, 0, 0, 0, 0, 0, 0, 0],
-    //   [0, 1, 0, 0, 0, 0, 0, 0],
-    //   [0, 0, 2, 0, 0, 0, 0, 0],
-    //   [0, 0, 0, 2, 1, 0, 0, 0],
-    //   [0, 0, 0, 1, 2, 0, 0, 0],
-    //   [0, 0, 0, 0, 0, 2, 1, 0],
-    //   [0, 0, 0, 0, 0, 1, 2, 0],
-    //   [0, 0, 0, 0, 0, 0, 0, 0],
-    // ]
   },
   reducers: {
     leftClick: (state, action) => {
@@ -50,9 +53,8 @@ export const boardSlice = createSlice({
       const [row, col] = action.payload
       changeCell(state, row, col, BLACK)
     },
-    setCellFixed: (state, action) => {
-      // const { cell: [row, col], color } = action.payload
-      // state.fixed.push([row, col])
+    setMode: (state, action) => {
+      state.fixing = action.payload
     },
   },
 })

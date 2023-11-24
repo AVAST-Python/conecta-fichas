@@ -6,3 +6,13 @@
   justify-content: center;
   flex-direction: column;
 }
+
+.modo {
+  text-align: center;
+  margin: 10px;
+}
+
+#instrucciones {
+  text-align: center;
+  margin: 10px;
+}

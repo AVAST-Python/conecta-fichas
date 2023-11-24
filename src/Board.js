@@ -26,7 +26,7 @@ function Board() {
           {current.map((row, i) => (
             <tr key={i}>
               {row.map((cell, j) => {
-                const isFixed = fixed[i][j] !== EMPTY
+                const isFixed = fixed.some(([row, col]) => row === i && col === j)
                 return (
                   <Square key={j} row={i} col={j} value={cell} fixed={isFixed}
                     onPressed={onPressed}
