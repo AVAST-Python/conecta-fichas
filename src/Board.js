@@ -2,7 +2,7 @@ import './Board.css'
 
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { leftClick, rightClick } from './features/boardSlice'
+import { leftClick, rightClick, EMPTY } from './features/boardSlice'
 
 import Square from './Square'
 
@@ -26,7 +26,7 @@ function Board() {
           {current.map((row, i) => (
             <tr key={i}>
               {row.map((cell, j) => {
-                const isFixed = !!fixed.find(e => e.cell[0] === i && e.cell[1] === j)
+                const isFixed = fixed[i][j] !== EMPTY
                 return (
                   <Square key={j} row={i} col={j} value={cell} fixed={isFixed}
                     onPressed={onPressed}

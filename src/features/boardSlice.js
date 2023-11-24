@@ -9,7 +9,7 @@ const BLACK = 2
 
 
 function changeCell(state, row, col, type) {
-  if(state.fixed.find(e => e.cell[0] === row && e.cell[1] === col)) return
+  if(state.fixed[row][col] !== EMPTY) return
 
   if(state.current[row][col] === type){
     state.current[row][col] = EMPTY
@@ -23,21 +23,23 @@ export const boardSlice = createSlice({
   initialState: {
     height: DEFAULT_WIDTH,
     width: DEFAULT_HEIGHT,
-    fixed: [
-      { cell: [1, 1], color: WHITE },
-      { cell: [2, 2], color: BLACK },
-    ],
-    // current: [...Array(DEFAULT_HEIGHT)].map(e => Array(DEFAULT_WIDTH).fill(EMPTY)),
-    current: [
-      [0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 1, 0, 0, 0, 0, 0, 0],
-      [0, 0, 2, 0, 0, 0, 0, 0],
-      [0, 0, 0, 2, 1, 0, 0, 0],
-      [0, 0, 0, 1, 2, 0, 0, 0],
-      [0, 0, 0, 0, 0, 2, 1, 0],
-      [0, 0, 0, 0, 0, 1, 2, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0],
-    ]
+    fixing: true,
+    fixed: [...Array(DEFAULT_HEIGHT)].map(e => Array(DEFAULT_WIDTH).fill(EMPTY)),
+    // fixed: [
+    //   { cell: [1, 1], color: WHITE },
+    //   { cell: [2, 2], color: BLACK },
+    // ],
+    current: [...Array(DEFAULT_HEIGHT)].map(e => Array(DEFAULT_WIDTH).fill(EMPTY)),
+    // current: [
+    //   [0, 0, 0, 0, 0, 0, 0, 0],
+    //   [0, 1, 0, 0, 0, 0, 0, 0],
+    //   [0, 0, 2, 0, 0, 0, 0, 0],
+    //   [0, 0, 0, 2, 1, 0, 0, 0],
+    //   [0, 0, 0, 1, 2, 0, 0, 0],
+    //   [0, 0, 0, 0, 0, 2, 1, 0],
+    //   [0, 0, 0, 0, 0, 1, 2, 0],
+    //   [0, 0, 0, 0, 0, 0, 0, 0],
+    // ]
   },
   reducers: {
     leftClick: (state, action) => {
