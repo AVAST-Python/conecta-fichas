@@ -1,5 +1,6 @@
-import './Board.css'
 import { useSelector } from 'react-redux'
+import './Board.css'
+import Square from './Square'
 
 function Board() {
 
@@ -8,9 +9,17 @@ function Board() {
   return (
 
     <div className="Board">
-      height: {height}, width: {width} <br/>
-      fixed: {fixed} <br/>
-      current: {current} <br/>
+      <table>
+        <tbody>
+          {current.map((row, i) => (
+            <tr key={i}>
+              {row.map((cell, j) => (
+                <Square key={j} value={cell}/>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 

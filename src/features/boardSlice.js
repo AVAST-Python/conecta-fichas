@@ -13,7 +13,17 @@ export const boardSlice = createSlice({
     height: DEFAULT_WIDTH,
     width: DEFAULT_HEIGHT,
     fixed: [],
-    current: [...Array(DEFAULT_HEIGHT)].map(e => Array(DEFAULT_WIDTH).fill(EMPTY)),
+    // current: [...Array(DEFAULT_HEIGHT)].map(e => Array(DEFAULT_WIDTH).fill(EMPTY)),
+    current: [
+      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 2, 1, 0, 0, 0, 0, 0],
+      [0, 1, 2, 0, 0, 0, 0, 0],
+      [0, 0, 0, 2, 1, 0, 0, 0],
+      [0, 0, 0, 1, 2, 0, 0, 0],
+      [0, 0, 0, 0, 0, 2, 1, 0],
+      [0, 0, 0, 0, 0, 1, 2, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0],
+    ]
   },
   reducers: {
     increment: (state) => {
