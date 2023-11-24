@@ -14,7 +14,7 @@ function Board() {
           {current.map((row, i) => (
             <tr key={i}>
               {row.map((cell, j) => (
-                <Square key={j} value={cell}/>
+                <Square key={j} row={i} col={j} value={cell}/>
               ))}
             </tr>
           ))}

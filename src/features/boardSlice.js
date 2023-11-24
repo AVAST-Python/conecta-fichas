@@ -26,25 +26,21 @@ export const boardSlice = createSlice({
     ]
   },
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes.
-      // Also, no return statement is required from these functions.
-      state.value += 1
+    leftClick: (state, action) => {
+      const [row, col] = action.payload
+      console.log(row, col)
+      // console.log(state.value)
     },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    rightClick: (state, action) => {
+      const [row, col] = action.payload
+      console.log('right click')
+      console.log(row, col)
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = boardSlice.actions
+export const { rightClick, leftClick } = boardSlice.actions
 export { EMPTY, WHITE, BLACK}
 
 export default boardSlice.reducer
