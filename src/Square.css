@@ -1,4 +1,3 @@
-
 .black {
   background-color: #000;
 }
@@ -9,4 +8,8 @@
   height: 30px;
   margin: auto;
   border: 1px solid black;
+}
+
+.fixed {
+  background-color: lightgray
 }

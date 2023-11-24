@@ -4,7 +4,7 @@ import Square from './Square'
 
 function Board() {
 
-  const {height, width, fixed, current} = useSelector(state => state.board)
+  const {fixed, current} = useSelector(state => state.board)
 
   return (
 
@@ -13,9 +13,12 @@ function Board() {
         <tbody>
           {current.map((row, i) => (
             <tr key={i}>
-              {row.map((cell, j) => (
-                <Square key={j} row={i} col={j} value={cell}/>
-              ))}
+              {row.map((cell, j) => {
+                const isFixed = !!fixed.find(e => e.cell[0] === i && e.cell[1] === j)
+                return (
+                  <Square key={j} row={i} col={j} value={cell} fixed={isFixed}/>
+                )
+              })}
             </tr>
           ))}
         </tbody>

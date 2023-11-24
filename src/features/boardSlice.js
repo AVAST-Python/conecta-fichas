@@ -7,17 +7,31 @@ const EMPTY = 0
 const WHITE = 1
 const BLACK = 2
 
+
+function changeCell(state, row, col, type) {
+  if(state.fixed.find(e => e.cell[0] === row && e.cell[1] === col)) return
+
+  if(state.current[row][col] === type){
+    state.current[row][col] = EMPTY
+  } else {
+    state.current[row][col] = type
+  }
+}
+
 export const boardSlice = createSlice({
   name: 'board',
   initialState: {
     height: DEFAULT_WIDTH,
     width: DEFAULT_HEIGHT,
-    fixed: [],
+    fixed: [
+      { cell: [1, 1], color: WHITE },
+      { cell: [2, 2], color: BLACK },
+    ],
     // current: [...Array(DEFAULT_HEIGHT)].map(e => Array(DEFAULT_WIDTH).fill(EMPTY)),
     current: [
       [0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 2, 1, 0, 0, 0, 0, 0],
-      [0, 1, 2, 0, 0, 0, 0, 0],
+      [0, 1, 0, 0, 0, 0, 0, 0],
+      [0, 0, 2, 0, 0, 0, 0, 0],
       [0, 0, 0, 2, 1, 0, 0, 0],
       [0, 0, 0, 1, 2, 0, 0, 0],
       [0, 0, 0, 0, 0, 2, 1, 0],
@@ -28,13 +42,15 @@ export const boardSlice = createSlice({
   reducers: {
     leftClick: (state, action) => {
       const [row, col] = action.payload
-      console.log(row, col)
-      // console.log(state.value)
+      changeCell(state, row, col, WHITE)
     },
     rightClick: (state, action) => {
       const [row, col] = action.payload
-      console.log('right click')
-      console.log(row, col)
+      changeCell(state, row, col, BLACK)
+    },
+    setCellFixed: (state, action) => {
+      // const { cell: [row, col], color } = action.payload
+      // state.fixed.push([row, col])
     },
   },
 })
