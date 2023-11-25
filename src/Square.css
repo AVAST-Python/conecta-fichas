@@ -10,6 +10,11 @@
   border: 1px solid black;
 }
 
-.fixed {
-  background-color: lightgray
+.fixed .piece.black {
+  border: 4px solid gray;
+  background-color: gray;
+}
+
+.fixed .piece.white {
+  border: 4px solid gray
 }
